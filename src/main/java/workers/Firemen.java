@@ -1,10 +1,13 @@
 package workers;
-import count.Count;
+import util.Util;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Firemen implements Runnable {
-    Count count;
 
-    public Firemen(count.Count count) {
+    private final AtomicInteger count;
+
+    public Firemen(AtomicInteger count) {
         this.count = count;
     }
 
@@ -13,18 +16,10 @@ public class Firemen implements Runnable {
         firemenAnswer();
     }
 
-    public  void firemenAnswer(){
+    private void firemenAnswer(){
         synchronized(count) {
-            try {
-                count.wait(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Util.waiting(count,100);
+            Util.sleep();
             System.out.println(" Firemen: We  will save the earth!");
         }
     }

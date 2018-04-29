@@ -1,11 +1,13 @@
 package workers;
 
-import count.Count;
+import util.Util;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Administrator implements Runnable {
-    Count count;
+    private final AtomicInteger count;
 
-    public Administrator(Count count) {
+    public Administrator(AtomicInteger count) {
         this.count = count;
     }
 
@@ -15,28 +17,16 @@ public class Administrator implements Runnable {
 
     }
 
-    public  void speakWithDuty() {
+    private void speakWithDuty() {
         synchronized (count) {
-            while (Count.getCount() <= 4) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            while (count.get() <= 4) {
+                Util.sleep();
                 System.out.println("Fireman on duty, what is the situation now?");
                 count.notify();
-                try {
-                    count.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Count.incrementCount();
+                Util.waiting(count,0);
+                count.incrementAndGet();
             }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Util.sleep();
             System.out.println("All firemen: Anxiety!!!");
             count.notifyAll();
         }
