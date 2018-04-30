@@ -12,7 +12,6 @@ public class FireStation {
 
     public static void main(String[] args) {
         AtomicInteger count = new AtomicInteger();
-        count.set(0);
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         executorService.submit(new Administrator(count));
         executorService.submit(new OnDuty(count));
