@@ -1,8 +1,5 @@
 package workers;
-
-
 import util.Util;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class OnDuty implements Runnable {
@@ -19,13 +16,13 @@ public class OnDuty implements Runnable {
     }
 
 
-    private void dutyAnswer(){
-        synchronized(count) {
+    private void dutyAnswer() {
+        synchronized (count) {
             while (count.get() <= 3) {
                 Util.sleep();
                 System.out.println(" All situation is good");
                 count.notify();
-                Util.waiting(count,0);
+                Util.waiting(count, 0);
             }
             Util.sleep();
             System.out.println(" Attention, we have fire !!!");

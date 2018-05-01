@@ -1,6 +1,5 @@
 package workers;
 import util.Util;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Firemen implements Runnable {
@@ -12,7 +11,6 @@ public class Firemen implements Runnable {
     }
 
     public void run() {
-
         firemenAnswer();
     }
 

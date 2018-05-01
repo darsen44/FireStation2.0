@@ -1,10 +1,9 @@
 package workers;
-
 import util.Util;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Administrator implements Runnable {
+
     private final AtomicInteger count;
 
     public Administrator(AtomicInteger count) {
@@ -12,9 +11,7 @@ public class Administrator implements Runnable {
     }
 
     public void run() {
-
         speakWithDuty();
-
     }
 
     private void speakWithDuty() {
@@ -23,7 +20,7 @@ public class Administrator implements Runnable {
                 Util.sleep();
                 System.out.println("Fireman on duty, what is the situation now?");
                 count.notify();
-                Util.waiting(count,0);
+                Util.waiting(count, 0);
                 count.incrementAndGet();
             }
             Util.sleep();
