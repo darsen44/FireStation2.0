@@ -1,9 +1,10 @@
 package util;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Util {
 
-    public static void sleep(){
+    public static void sleep() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -11,7 +12,7 @@ public class Util {
         }
     }
 
-    public static void waiting(AtomicInteger count, int time){
+    public static void waiting(AtomicInteger count, int time) {
         try {
             count.wait(time);
         } catch (InterruptedException e) {

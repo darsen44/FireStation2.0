@@ -1,5 +1,7 @@
 package workers;
+
 import util.Util;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class OnDuty implements Runnable {

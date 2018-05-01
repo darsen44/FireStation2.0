@@ -1,5 +1,7 @@
 package workers;
+
 import util.Util;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Firemen implements Runnable {
@@ -14,9 +16,9 @@ public class Firemen implements Runnable {
         firemenAnswer();
     }
 
-    private void firemenAnswer(){
-        synchronized(count) {
-            Util.waiting(count,100);
+    private void firemenAnswer() {
+        synchronized (count) {
+            Util.waiting(count, 100);
             Util.sleep();
             System.out.println(" Firemen: We  will save the earth!");
         }
